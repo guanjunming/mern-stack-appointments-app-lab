@@ -61,21 +61,21 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
           name="title"
           label="Title"
           defaultValue={appointment?.title || ""}
-          // required
+          required
         />
         <Input
           type="text"
           name="type"
           label="Type"
           defaultValue={appointment?.type || ""}
-          // required
+          required
         />
         <Input
           type="text"
           name="purpose"
           label="Purpose"
           defaultValue={appointment?.purpose || ""}
-          // required
+          required
         />
         <Input
           type="text"
@@ -100,6 +100,7 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
           name="date"
           label="Date"
           defaultValue={formatDate(appointment?.date)}
+          required
         />
         <Input
           isTextArea

@@ -5,12 +5,23 @@ const {
   deleteAppointment,
   updateAppointment,
 } = require("../controllers/appointments");
+const {
+  validateApptData,
+  validateIdInParam,
+} = require("../validators/appointments");
+const checkErrors = require("../validators/checkErrors");
 
 const router = express.Router();
 
 router.get("/appts", getAllAppointments);
-router.post("/appts", addAppointment);
-router.delete("/appts/:id", deleteAppointment);
-router.patch("/appts/:id", updateAppointment);
+router.post("/appts", validateApptData, checkErrors, addAppointment);
+router.delete("/appts/:id", validateIdInParam, checkErrors, deleteAppointment);
+router.patch(
+  "/appts/:id",
+  validateIdInParam,
+  validateApptData,
+  checkErrors,
+  updateAppointment
+);
 
 module.exports = router;

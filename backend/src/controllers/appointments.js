@@ -8,19 +8,17 @@ const getAllAppointments = async (req, res) => {
     console.error(error.message);
     res
       .status(400)
-      .json({ status: "error", message: "failed getting all appointments" });
+      .json({ status: "error", msg: "failed getting all appointments" });
   }
 };
 
 const addAppointment = async (req, res) => {
   try {
     await Appointment.create(req.body);
-    res.status(201).json({ status: "ok", message: "appointment saved" });
+    res.status(201).json({ status: "ok", msg: "appointment saved" });
   } catch (error) {
     console.error(error.message);
-    res
-      .status(400)
-      .json({ status: "error", message: "failed to add appointment" });
+    res.status(400).json({ status: "error", msg: "failed to add appointment" });
   }
 };
 
@@ -30,7 +28,7 @@ const deleteAppointment = async (req, res) => {
     if (!appt) {
       return res
         .status(404)
-        .json({ status: "error", message: "appointment not found" });
+        .json({ status: "error", msg: "appointment not found" });
     }
     res.json({ status: "ok", msg: "appointment deleted" });
   } catch (error) {
@@ -47,7 +45,7 @@ const updateAppointment = async (req, res) => {
     if (!appt) {
       return res
         .status(404)
-        .json({ status: "error", message: "appointment not found" });
+        .json({ status: "error", msg: "appointment not found" });
     }
     res.json({ status: "ok", msg: "appointment updated" });
   } catch (error) {

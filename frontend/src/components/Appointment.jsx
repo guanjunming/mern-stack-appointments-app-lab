@@ -10,13 +10,12 @@ const Appointment = ({ appt, onDelete, getAppointments }) => {
     <>
       {modalOpen && (
         <Modal>
-          <h2 className="text-xl font-bold text-gray-900 mb-3">
-            Edit Appointment
-          </h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Appointment</h2>
           <Form
             appointment={appt}
             setModalOpen={setModalOpen}
             getAppointments={getAppointments}
+            editable={false}
           />
         </Modal>
       )}
@@ -32,7 +31,7 @@ const Appointment = ({ appt, onDelete, getAppointments }) => {
               className="px-4 py-2 rounded-md bg-indigo-600 text-white shadow-sm hover:bg-indigo-500"
               onClick={() => setModalOpen(true)}
             >
-              Update
+              View
             </button>
             <button
               className="px-4 py-2 rounded-md bg-gray-900 text-white shadow-sm hover:bg-gray-600"

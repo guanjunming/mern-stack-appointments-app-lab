@@ -52,7 +52,11 @@ const AppointmentsDisplay = () => {
           <h2 className="text-xl font-bold text-gray-900 mb-3">
             Add New Appointment
           </h2>
-          <Form setModalOpen={setModalOpen} getAppointments={getAppointments} />
+          <Form
+            setModalOpen={setModalOpen}
+            getAppointments={getAppointments}
+            editable={true}
+          />
         </Modal>
       )}
 

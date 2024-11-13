@@ -3,7 +3,8 @@ import useFetch from "../hooks/useFetch";
 import { formatToLocalDatetime } from "../utils/utils";
 import Input from "./Input";
 
-const Form = ({ appointment, setModalOpen, getAppointments }) => {
+const Form = ({ appointment, setModalOpen, getAppointments, editable }) => {
+  const [isEditable, setIsEditable] = useState(editable);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState(null);
   const fetchData = useFetch();
@@ -62,6 +63,7 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
           label="Title"
           defaultValue={appointment?.title || ""}
           required
+          readOnly={!isEditable}
         />
         <Input
           type="text"
@@ -69,6 +71,7 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
           label="Type"
           defaultValue={appointment?.type || ""}
           required
+          readOnly={!isEditable}
         />
         <Input
           type="text"
@@ -76,24 +79,7 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
           label="Purpose"
           defaultValue={appointment?.purpose || ""}
           required
-        />
-        <Input
-          type="text"
-          name="company"
-          label="Company"
-          defaultValue={appointment?.company || ""}
-        />
-        <Input
-          type="text"
-          name="person"
-          label="Person meeting with"
-          defaultValue={appointment?.person || ""}
-        />
-        <Input
-          type="text"
-          name="address"
-          label="Address"
-          defaultValue={appointment?.address || ""}
+          readOnly={!isEditable}
         />
         <Input
           type="datetime-local"
@@ -101,12 +87,36 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
           label="Date"
           defaultValue={formatToLocalDatetime(appointment?.date)}
           required
+          readOnly={!isEditable}
         />
+        <Input
+          type="text"
+          name="person"
+          label="Person meeting with"
+          defaultValue={appointment?.person || ""}
+          readOnly={!isEditable}
+        />
+        <Input
+          type="text"
+          name="company"
+          label="Company"
+          defaultValue={appointment?.company || ""}
+          readOnly={!isEditable}
+        />
+        <Input
+          type="text"
+          name="address"
+          label="Address"
+          defaultValue={appointment?.address || ""}
+          readOnly={!isEditable}
+        />
+
         <Input
           isTextArea
           name="comments"
           label="Comments"
           defaultValue={appointment?.comments || ""}
+          readOnly={!isEditable}
         />
       </div>
       <div className="flex justify-end gap-3 mt-4">
@@ -117,12 +127,25 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
         >
           Cancel
         </button>
-        <button
-          type="submit"
-          className="px-5 py-2 rounded-md bg-indigo-600 text-white shadow-sm hover:bg-indigo-500"
-        >
-          Save
-        </button>
+
+        {!isEditable && (
+          <button
+            type="button"
+            className="px-5 py-2 rounded-md bg-indigo-600 text-white shadow-sm hover:bg-indigo-500"
+            onClick={() => setIsEditable(true)}
+          >
+            Edit
+          </button>
+        )}
+
+        {isEditable && (
+          <button
+            type="submit"
+            className="px-5 py-2 rounded-md bg-indigo-600 text-white shadow-sm hover:bg-indigo-500"
+          >
+            Save
+          </button>
+        )}
       </div>
       {isError && error}
     </form>

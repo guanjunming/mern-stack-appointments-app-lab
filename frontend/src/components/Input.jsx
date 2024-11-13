@@ -8,14 +8,14 @@ const Input = ({ name, label, isTextArea = false, ...props }) => {
         <textarea
           id={name}
           name={name}
-          className="w-full rounded-md border-2 py-1 px-2 text-sm border-gray-300 focus:outline-none"
+          className="w-full rounded-md border py-1 px-2 text-sm border-gray-300 focus:outline-none"
           {...props}
         ></textarea>
       ) : (
         <input
           id={name}
           name={name}
-          className="w-full rounded-md border-2 py-1 px-2 text-sm border-gray-300 focus:outline-none"
+          className="w-full rounded-md border py-1 px-2 text-sm border-gray-300 focus:outline-none"
           {...props}
         />
       )}

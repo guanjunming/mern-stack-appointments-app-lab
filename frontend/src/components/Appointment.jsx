@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Form from "./Form";
 import Modal from "./Modal";
-import { formatDate } from "../utils/utils";
+import { formatDateToLocalString } from "../utils/utils";
 
 const Appointment = ({ appt, onDelete, getAppointments }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,7 +25,7 @@ const Appointment = ({ appt, onDelete, getAppointments }) => {
         <td className="p-3">{appt.title}</td>
         <td className="p-3">{appt.type}</td>
         <td className="p-3">{appt.purpose}</td>
-        <td className="p-3">{formatDate(appt.date, false)}</td>
+        <td className="p-3">{formatDateToLocalString(appt.date)}</td>
         <td className="flex justify-end p-3">
           <div className="flex gap-2">
             <button

@@ -1,7 +1,5 @@
 const { body, param } = require("express-validator");
 
-const validateIdInBody = [body("id", "id is invalid").notEmpty().isMongoId()];
-
 const validateIdInParam = [param("id", "id is invalid").isMongoId()];
 
 const validateApptData = [
@@ -20,7 +18,6 @@ const validateApptData = [
 ];
 
 module.exports = {
-  validateIdInBody,
   validateIdInParam,
   validateApptData,
 };

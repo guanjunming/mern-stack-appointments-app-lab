@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
-import { formatDate } from "../utils/utils";
+import { formatToLocalDatetime } from "../utils/utils";
 import Input from "./Input";
 
 const Form = ({ appointment, setModalOpen, getAppointments }) => {
@@ -54,7 +54,7 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-96">
+    <form onSubmit={handleSubmit} className="w-[500px]">
       <div className="flex flex-col gap-1.5">
         <Input
           type="text"
@@ -99,7 +99,7 @@ const Form = ({ appointment, setModalOpen, getAppointments }) => {
           type="datetime-local"
           name="date"
           label="Date"
-          defaultValue={formatDate(appointment?.date)}
+          defaultValue={formatToLocalDatetime(appointment?.date)}
           required
         />
         <Input
